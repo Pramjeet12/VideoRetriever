@@ -1,2 +1,5 @@
 .env
 downloads/
+vector_db/
+__pycache__/
+*.py[cod]
