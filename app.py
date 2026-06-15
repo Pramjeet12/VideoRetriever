@@ -197,11 +197,12 @@ def server_error(error):
 
 if __name__ == '__main__':
     debug_mode = os.getenv("FLASK_DEBUG", "false").lower() == "true"
+    port = int(os.getenv("PORT", "5000"))
     # Disable the auto-reloader because audio downloads/conversions create files
     # inside the project, which can trigger a restart mid-request on Windows.
     app.run(
         debug=debug_mode,
         host='0.0.0.0',
-        port=5000,
+        port=port,
         use_reloader=False,
     )
