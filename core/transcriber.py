@@ -148,7 +148,9 @@ def transcribe_chunk(chunk_path: str, language: str = "english") -> str:
     - hindi / hinglish -> Sarvam (translates to English while transcribing)
     """
     if language.lower() in {"hindi", "hinglish"}:
+        print("Using Sarvam for Hindi/Hinglish transcription.")
         return transcribe_chunk_sarvam(chunk_path)
+    print("Using Whisper for English transcription.")
     return transcribe_chunk_whisper(chunk_path)
 
 
