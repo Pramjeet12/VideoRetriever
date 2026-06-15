@@ -12,17 +12,23 @@ ENGLISH_OUTPUT_INSTRUCTION = (
 )
 
 
+def _post_json(url: str, headers: dict, payload: dict, timeout: int = 120) -> requests.Response:
+    session = requests.Session()
+    session.trust_env = False
+    return session.post(url, headers=headers, json=payload, timeout=timeout)
+
+
 def _chat(prompt: str, system_prompt: str) -> str:
     if not MISTRAL_API_KEY:
         raise RuntimeError("MISTRAL_API_KEY is not set in environment / .env")
 
-    response = requests.post(
+    response = _post_json(
         MISTRAL_CHAT_URL,
         headers={
             "Authorization": f"Bearer {MISTRAL_API_KEY}",
             "Content-Type": "application/json",
         },
-        json={
+        payload={
             "model": MISTRAL_MODEL,
             "temperature": 0.2,
             "messages": [
@@ -30,7 +36,6 @@ def _chat(prompt: str, system_prompt: str) -> str:
                 {"role": "user", "content": prompt},
             ],
         },
-        timeout=120,
     )
     response.raise_for_status()
     data = response.json()
