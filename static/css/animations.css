@@ -1,0 +1,86 @@
+@keyframes floatSlow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmerSweep {
+    from { transform: translateX(-140%); }
+    to { transform: translateX(140%); }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulseDot {
+    0%, 100% { opacity: 0.5; transform: scale(0.92); }
+    50% { opacity: 1; transform: scale(1.08); }
+}
+
+@keyframes fadeRise {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowLine {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 1; }
+}
+
+@keyframes activePulse {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.16), 0 12px 24px rgba(37, 99, 235, 0.14); }
+    50% { box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.28), 0 18px 34px rgba(37, 99, 235, 0.24); }
+}
+
+.site-header,
+.hero-copy-panel,
+.hero-visual-panel,
+.feature-card,
+.workflow-section,
+.analysis-form-panel,
+.analysis-side-panel,
+.results-hero,
+.results-tabs,
+.tab-panel,
+.error-panel {
+    animation: fadeRise 0.5s ease both;
+}
+
+.aurora-one,
+.aurora-two,
+.aurora-three,
+.workflow-orb,
+.status-pill {
+    animation: floatSlow 8s ease-in-out infinite;
+}
+
+.primary-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.primary-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 18%, rgba(255, 255, 255, 0.24) 48%, transparent 78%);
+    animation: shimmerSweep 3.8s ease-in-out infinite;
+}
+
+.loading-orbit {
+    animation: spin 1s linear infinite;
+}
+
+.step.active .step-dot {
+    animation: pulseDot 1.2s ease-in-out infinite;
+}
+
+.connector,
+.timeline-arrow {
+    animation: glowLine 2.4s ease-in-out infinite;
+}
+
+.tab-button.active {
+    animation: activePulse 2.2s ease-in-out infinite;
+}

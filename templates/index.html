@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoRetriever - Meeting Intelligence Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+</head>
+<body class="theme-app">
+    <div class="aurora aurora-one"></div>
+    <div class="aurora aurora-two"></div>
+    <div class="aurora aurora-three"></div>
+
+    <div class="app-shell">
+        <header class="site-header">
+            <div class="brand-group">
+                <a href="/" class="brand-lockup">
+                    <span class="brand-emblem">
+                        <span></span><span></span><span></span>
+                    </span>
+                    <span class="brand-text">
+                        <span class="brand-kicker">AI Meeting Workspace</span>
+                        <span class="brand-title">VideoRetriever</span>
+                    </span>
+                </a>
+                <span class="status-pill">
+                    <span class="status-dot"></span>
+                    Backend online
+                </span>
+            </div>
+            <nav class="header-actions">
+                <a href="#analysis" class="ghost-link">Start Analysis</a>
+                <a href="#workflow" class="ghost-link">View Workflow</a>
+            </nav>
+        </header>
+
+        <main class="landing-stack">
+            <section class="hero-grid">
+                <div class="hero-copy-panel glass-card">
+                    <div class="section-badge">Transcript / Summary / Extraction / RAG</div>
+                    <h1 class="hero-title">Meeting Intelligence,<br>Ready When the Call Ends</h1>
+                    <p class="hero-description">
+                        Bring in a YouTube link or local media file. The pipeline transcribes, summarizes,
+                        extracts next steps, and gives you grounded Q&amp;A over the transcript in one clean workspace.
+                    </p>
+
+                    <div class="hero-cta-row">
+                        <a href="#analysis" class="primary-button">
+                            <span>Start Analysis</span>
+                        </a>
+                        <a href="#workflow" class="secondary-button">
+                            <span>View Demo</span>
+                        </a>
+                    </div>
+
+                    <div class="hero-metric-row">
+                        <article class="mini-metric">
+                            <span class="mini-label">Output style</span>
+                            <strong>English-first briefings</strong>
+                        </article>
+                        <article class="mini-metric">
+                            <span class="mini-label">Engine mix</span>
+                            <strong>Whisper + Sarvam + Chroma</strong>
+                        </article>
+                        <article class="mini-metric">
+                            <span class="mini-label">Use case</span>
+                            <strong>Long-form recordings</strong>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="hero-visual-panel glass-card">
+                    <div class="hero-visual-header">
+                        <span class="visual-chip">Live workflow preview</span>
+                        <span class="visual-chip muted">AI workspace</span>
+                    </div>
+                    <div class="hero-visual-board">
+                        <div class="hero-orbit hero-orbit-a"></div>
+                        <div class="hero-orbit hero-orbit-b"></div>
+                        <div class="workflow-orb central-orb">
+                            <span>AI</span>
+                            <strong>Analysis Core</strong>
+                        </div>
+                        <div class="workflow-orb orb-top-left">
+                            <span>Input</span>
+                            <strong>YouTube / File</strong>
+                        </div>
+                        <div class="workflow-orb orb-top-right">
+                            <span>STT</span>
+                            <strong>Whisper / Sarvam</strong>
+                        </div>
+                        <div class="workflow-orb orb-bottom-left">
+                            <span>Insights</span>
+                            <strong>Summary + Actions</strong>
+                        </div>
+                        <div class="workflow-orb orb-bottom-right">
+                            <span>Memory</span>
+                            <strong>RAG Chat</strong>
+                        </div>
+                        <div class="connector connector-1"></div>
+                        <div class="connector connector-2"></div>
+                        <div class="connector connector-3"></div>
+                        <div class="connector connector-4"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="feature-section">
+                <div class="section-heading">
+                    <div>
+                        <div class="section-badge">Core capabilities</div>
+                        <h2 class="section-title">A polished pipeline from audio intake to grounded answers.</h2>
+                    </div>
+                    <p class="section-copy">Each capability card is sized evenly so the whole section reads cleanly across desktop, tablet, and mobile.</p>
+                </div>
+
+                <div class="feature-grid">
+                    <article class="feature-card glass-card">
+                        <div class="icon-wrap icon-blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M12 1v22"></path>
+                                <path d="M5 8v8"></path>
+                                <path d="M19 8v8"></path>
+                                <path d="M5 12h14"></path>
+                            </svg>
+                        </div>
+                        <h3>Whisper</h3>
+                        <p>Local transcription for English with a dependable path for long recordings and private processing.</p>
+                    </article>
+
+                    <article class="feature-card glass-card">
+                        <div class="icon-wrap icon-purple">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 8l4-4"></path>
+                                <path d="M15 4h4v4"></path>
+                                <path d="M19 12c0 3.9-3.1 7-7 7a7 7 0 0 1-7-7c0-3.9 3.1-7 7-7"></path>
+                                <path d="M9 10h6"></path>
+                                <path d="M9 14h4"></path>
+                            </svg>
+                        </div>
+                        <h3>Sarvam</h3>
+                        <p>Hindi and Hinglish audio can be routed into English output so the rest of the workspace stays consistent.</p>
+                    </article>
+
+                    <article class="feature-card glass-card">
+                        <div class="icon-wrap icon-cyan">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M6 6h12v12H6z"></path>
+                                <path d="M9 9h6v6H9z"></path>
+                                <path d="M3 12h3"></path>
+                                <path d="M18 12h3"></path>
+                            </svg>
+                        </div>
+                        <h3>Chroma</h3>
+                        <p>Vector retrieval for follow-up questions so answers stay grounded in the actual transcript context.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="workflow" class="workflow-section glass-card">
+                <div class="section-heading">
+                    <div>
+                        <div class="section-badge">Workflow timeline</div>
+                        <h2 class="section-title">A modern step-by-step path from raw audio to AI answers.</h2>
+                    </div>
+                    <p class="section-copy">Each stage is shown as a dedicated step card connected by animated progress arrows.</p>
+                </div>
+
+                <div class="workflow-timeline">
+                    <article class="timeline-card">
+                        <div class="timeline-icon icon-blue">01</div>
+                        <h3>Input</h3>
+                        <p>YouTube links or local files enter the pipeline.</p>
+                    </article>
+                    <div class="timeline-arrow"></div>
+                    <article class="timeline-card">
+                        <div class="timeline-icon icon-cyan">02</div>
+                        <h3>Whisper</h3>
+                        <p>Audio is converted and transcribed for English speech.</p>
+                    </article>
+                    <div class="timeline-arrow"></div>
+                    <article class="timeline-card">
+                        <div class="timeline-icon icon-purple">03</div>
+                        <h3>Translation</h3>
+                        <p>Hindi and Hinglish flow can be translated into English.</p>
+                    </article>
+                    <div class="timeline-arrow"></div>
+                    <article class="timeline-card">
+                        <div class="timeline-icon icon-blue">04</div>
+                        <h3>Summary</h3>
+                        <p>The transcript is condensed into a readable SaaS-style briefing.</p>
+                    </article>
+                    <div class="timeline-arrow"></div>
+                    <article class="timeline-card">
+                        <div class="timeline-icon icon-purple">05</div>
+                        <h3>Extraction</h3>
+                        <p>Action items, decisions, and open questions are pulled out clearly.</p>
+                    </article>
+                    <div class="timeline-arrow"></div>
+                    <article class="timeline-card">
+                        <div class="timeline-icon icon-cyan">06</div>
+                        <h3>RAG Chat</h3>
+                        <p>Context is indexed so follow-up questions stay grounded in the meeting.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="analysis" class="analysis-dashboard">
+                <div class="analysis-form-panel glass-card">
+                    <div class="analysis-ambient analysis-ambient-a" aria-hidden="true"></div>
+                    <div class="analysis-ambient analysis-ambient-b" aria-hidden="true"></div>
+
+                    <div class="analysis-panel-top">
+                        <div class="analysis-copy-block">
+                            <div class="section-badge">Analysis dashboard</div>
+                            <h2 class="section-title">Start with the actual workflow here.</h2>
+                            <p class="section-copy">Paste the media source, choose the language path, and run the pipeline without changing any backend behavior.</p>
+                        </div>
+
+                        <div class="analysis-meta-strip">
+                            <article class="analysis-meta-card">
+                                <span class="analysis-meta-label">Mode</span>
+                                <strong>Meeting intelligence</strong>
+                            </article>
+                            <article class="analysis-meta-card">
+                                <span class="analysis-meta-label">Output</span>
+                                <strong>English-first insight pack</strong>
+                            </article>
+                            <article class="analysis-meta-card">
+                                <span class="analysis-meta-label">Flow</span>
+                                <strong>Source to transcript to answers</strong>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="analysis-input-stage">
+                        <div class="analysis-stage-head">
+                            <div>
+                                <div class="analysis-stage-kicker">Input lane</div>
+                                <h3 class="analysis-stage-title">Drop in a source and launch the pipeline</h3>
+                            </div>
+                            <div class="analysis-stage-pill">Ready for YouTube or local files</div>
+                        </div>
+
+                        <div class="floating-grid">
+                            <div class="field-group field-source">
+                                <label for="source">Source URL or file path</label>
+                                <div class="input-shell">
+                                    <span class="input-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                            <path d="M10 13a5 5 0 0 0 7.54.54l2.92-2.92a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                            <path d="M14 11a5 5 0 0 0-7.54-.54L3.54 13.38a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                                        </svg>
+                                    </span>
+                                    <input
+                                        type="text"
+                                        id="source"
+                                        placeholder="https://www.youtube.com/watch?v=..."
+                                        class="input-field"
+                                    >
+                                </div>
+                                <small>Use a YouTube URL or a local media file path.</small>
+                            </div>
+
+                            <div class="field-group field-language">
+                                <label for="language">Transcription language</label>
+                                <div class="input-shell">
+                                    <span class="input-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                            <path d="M12 3c4.97 0 9 4.03 9 9"></path>
+                                            <path d="M12 21c-4.97 0-9-4.03-9-9"></path>
+                                            <path d="M3 12h18"></path>
+                                            <path d="M12 3a15.3 15.3 0 0 1 0 18"></path>
+                                            <path d="M12 3a15.3 15.3 0 0 0 0 18"></path>
+                                        </svg>
+                                    </span>
+                                    <select id="language" class="input-field">
+                                        <option value="english">English</option>
+                                        <option value="hindi">Hindi</option>
+                                        <option value="hinglish">Hinglish</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button id="analyzeBtn" class="primary-button analyze-button">
+                                <span class="button-content">
+                                    <span class="cta-label">Analyze media</span>
+                                    <span class="cta-arrow" aria-hidden="true">&rarr;</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="loadingState" class="loading-panel hidden">
+                        <div class="loading-orbit" aria-hidden="true"></div>
+                        <p>Running the pipeline. Long videos may take a few minutes.</p>
+                        <div class="progress-steps">
+                            <div class="step active">
+                                <span class="step-dot"></span>
+                                <span class="step-label">Audio processing</span>
+                            </div>
+                            <div class="step">
+                                <span class="step-dot"></span>
+                                <span class="step-label">Transcription</span>
+                            </div>
+                            <div class="step">
+                                <span class="step-dot"></span>
+                                <span class="step-label">Extraction</span>
+                            </div>
+                            <div class="step">
+                                <span class="step-dot"></span>
+                                <span class="step-label">RAG setup</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="errorState" class="error-banner hidden">
+                        <p id="errorMessage"></p>
+                        <button class="ghost-button" onclick="clearError()">Dismiss</button>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - VideoRetriever</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+</head>
+<body class="theme-app">
+    <div class="aurora aurora-one"></div>
+    <div class="aurora aurora-two"></div>
+
+    <div class="app-shell">
+        <header class="site-header">
+            <div class="brand-group">
+                <a href="/" class="brand-lockup">
+                    <span class="brand-emblem">
+                        <span></span><span></span><span></span>
+                    </span>
+                    <span class="brand-text">
+                        <span class="brand-kicker">AI Meeting Workspace</span>
+                        <span class="brand-title">VideoRetriever</span>
+                    </span>
+                </a>
+                <span class="status-pill">
+                    <span class="status-dot"></span>
+                    Session loaded
+                </span>
+            </div>
+            <nav class="header-actions">
+                <a href="/" class="ghost-link">New analysis</a>
+            </nav>
+        </header>
+
+        <div id="resultsLoading" class="loading-screen glass-card">
+            <div class="loading-orbit" aria-hidden="true"></div>
+            <p>Loading the session workspace...</p>
+        </div>
+
+        <main id="resultsContainer" class="results-shell hidden">
+            <section class="results-hero glass-card">
+                <div class="results-hero-copy">
+                    <div class="section-badge">Analysis workspace</div>
+                    <h1 id="resultTitle" class="results-title"></h1>
+                    <p class="section-copy">Explore the transcript, summary, extracted insights, grounded Q&amp;A, and export guidance from one stable workspace.</p>
+                </div>
+                <div class="results-stats-grid">
+                    <article class="stat-card">
+                        <span class="meta-label">Transcript length</span>
+                        <strong id="statsTranscriptLength"></strong>
+                    </article>
+                    <article class="stat-card">
+                        <span class="meta-label">Audio chunks</span>
+                        <strong id="statsChunksCount"></strong>
+                    </article>
+                    <article class="stat-card">
+                        <span class="meta-label">Created</span>
+                        <strong id="statsCreatedAt"></strong>
+                    </article>
+                </div>
+            </section>
+
+            <section class="results-workspace">
+                <aside class="results-tabs glass-card">
+                    <button class="tab-button active" type="button" data-tab="summaryTab">
+                        <span class="tab-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M8 3h8l5 5v13H8z"></path>
+                                <path d="M16 3v5h5"></path>
+                                <path d="M10 13h8"></path>
+                                <path d="M10 17h8"></path>
+                            </svg>
+                        </span>
+                        <span>Summary</span>
+                    </button>
+                    <button class="tab-button" type="button" data-tab="transcriptTab">
+                        <span class="tab-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 5h16"></path>
+                                <path d="M4 10h16"></path>
+                                <path d="M4 15h10"></path>
+                                <path d="M4 20h12"></path>
+                            </svg>
+                        </span>
+                        <span>Transcript</span>
+                    </button>
+                    <button class="tab-button" type="button" data-tab="actionItemsTab">
+                        <span class="tab-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 6 9 17l-5-5"></path>
+                            </svg>
+                        </span>
+                        <span>Action Items</span>
+                    </button>
+                    <button class="tab-button" type="button" data-tab="decisionsTab">
+                        <span class="tab-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="8"></circle>
+                                <circle cx="12" cy="12" r="2.5"></circle>
+                            </svg>
+                        </span>
+                        <span>Decisions</span>
+                    </button>
+                    <button class="tab-button" type="button" data-tab="questionsTab">
+                        <span class="tab-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9.1 9a3 3 0 1 1 5.8 1c0 2-3 2-3 4"></path>
+                                <path d="M12 17h.01"></path>
+                            </svg>
+                        </span>
+                        <span>Questions</span>
+                    </button>
+                    <button class="tab-button" type="button" data-tab="chatTab">
+                        <span class="tab-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 10h10"></path>
+                                <path d="M7 14h6"></path>
+                                <path d="M5 19l-1 3 4-2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 1 1"></path>
+                            </svg>
+                        </span>
+                        <span>Chat</span>
+                    </button>
+                    <button class="tab-button" type="button" data-tab="exportTab">
+                        <span class="tab-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 3v12"></path>
+                                <path d="m7 10 5 5 5-5"></path>
+                                <path d="M5 21h14"></path>
+                            </svg>
+                        </span>
+                        <span>Export</span>
+                    </button>
+                </aside>
+
+                <section class="results-content">
+                    <div class="results-panel-stage glass-card">
+                        <article id="summaryTab" class="tab-panel tab-theme-summary active">
+                            <div class="assistant-shell">
+                                <div class="assistant-shell-head">
+                                    <div>
+                                        <div class="panel-kicker">Summary</div>
+                                        <h2 class="panel-title">Meeting Snapshot</h2>
+                                        <p class="assistant-subtitle">A concise summary of the most important topics, outcomes, and next steps.</p>
+                                    </div>
+                                    <span class="assistant-state">Ready</span>
+                                </div>
+                                <div class="assistant-shell-body">
+                                    <div class="response-card response-primary">
+                                        <div id="resultSummary" class="panel-copy"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article id="transcriptTab" class="tab-panel tab-theme-transcript panel-hidden">
+                            <div class="assistant-shell">
+                                <div class="assistant-shell-head">
+                                    <div>
+                                        <div class="panel-kicker">Transcript</div>
+                                        <h2 class="panel-title">Full Meeting Text</h2>
+                                        <p class="assistant-subtitle">Inspect the complete transcript while keeping the same workspace size and alignment.</p>
+                                    </div>
+                                </div>
+                                <div class="assistant-shell-body">
+                                    <div id="transcriptContainer" class="transcript-shell transcript-shell-open">
+                                        <textarea id="resultTranscript" readonly class="transcript-text"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article id="actionItemsTab" class="tab-panel tab-theme-actions panel-hidden">
+                            <div class="assistant-shell">
+                                <div class="assistant-shell-head">
+                                    <div>
+                                        <div class="panel-kicker">Action Items</div>
+                                        <h2 class="panel-title">What Needs to Happen Next</h2>
+                                        <p class="assistant-subtitle">Clear next steps, follow-through tasks, and practical ownership-ready notes.</p>
+                                    </div>
+                                    <span class="assistant-state">Ready</span>
+                                </div>
+                                <div class="assistant-shell-body">
+                                    <div class="response-card response-primary">
+                                        <div id="resultActionItems" class="panel-copy"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article id="decisionsTab" class="tab-panel tab-theme-decisions panel-hidden">
+                            <div class="assistant-shell">
+                                <div class="assistant-shell-head">
+                                    <div>
+                                        <div class="panel-kicker">Decisions</div>
+                                        <h2 class="panel-title">What Was Actually Decided</h2>
+                                        <p class="assistant-subtitle">Final decisions and agreements captured in a clean assistant-style response card.</p>
+                                    </div>
+                                    <span class="assistant-state">Ready</span>
+                                </div>
+                                <div class="assistant-shell-body">
+                                    <div class="response-card response-primary">
+                                        <div id="resultDecisions" class="panel-copy"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article id="questionsTab" class="tab-panel tab-theme-questions panel-hidden">
+                            <div class="assistant-shell">
+                                <div class="assistant-shell-head">
+                                    <div>
+                                        <div class="panel-kicker">Questions</div>
+                                        <h2 class="panel-title">Open Questions and Uncertainties</h2>
+                                        <p class="assistant-subtitle">Outstanding issues, follow-up questions, and areas that still need clarification.</p>
+                                    </div>
+                                    <span class="assistant-state">Ready</span>
+                                </div>
+                                <div class="assistant-shell-body">
+                                    <div class="response-card response-primary">
+                                        <div id="resultQuestions" class="panel-copy"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article id="chatTab" class="tab-panel tab-theme-chat panel-hidden">
+                            <div class="assistant-shell">
+                                <div class="assistant-shell-head">
+                                    <div>
+                                        <div class="panel-kicker">RAG Chat</div>
+                                        <h2 class="panel-title">Ask the Meeting</h2>
+                                        <p class="assistant-subtitle">Ask grounded follow-up questions using the transcript context already loaded into memory.</p>
+                                    </div>
+                                    <span class="assistant-state">Ready</span>
+                                </div>
+                                <div class="assistant-shell-body assistant-chat-body">
+                                    <div id="chatHistory" class="chat-history"></div>
+                                    <form class="chat-form" onsubmit="handleQuestion(event)">
+                                        <input
+                                            type="text"
+                                            id="questionInput"
+                                            placeholder="Type your question..."
+                                            class="input-field"
+                                            autocomplete="off"
+                                        >
+                                        <button type="submit" class="primary-button compact-button">
+                                            <span class="button-content">
+                                                <span class="cta-label">Send</span>
+                                                <span class="cta-arrow" aria-hidden="true">&rarr;</span>
+                                            </span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article id="exportTab" class="tab-panel tab-theme-export panel-hidden">
+                            <div class="assistant-shell">
+                                <div class="assistant-shell-head">
+                                    <div>
+                                        <div class="panel-kicker">Export</div>
+                                        <h2 class="panel-title">Ready for Handoff</h2>
+                                        <p class="assistant-subtitle">Use these polished output blocks to move the meeting into docs, tickets, reports, or handoff notes.</p>
+                                    </div>
+                                    <span class="assistant-state">Ready</span>
+                                </div>
+                                <div class="assistant-shell-body">
+                                    <div class="export-grid">
+                                        <div class="export-card">
+                                            <strong>Summary export</strong>
+                                            <p>Use the summary, decisions, and action items tabs to copy the meeting brief into docs or tickets.</p>
+                                        </div>
+                                        <div class="export-card">
+                                            <strong>Transcript archive</strong>
+                                            <p>The transcript tab keeps the full text available for review, audit, and downstream storage.</p>
+                                        </div>
+                                        <div class="export-card">
+                                            <strong>Chat follow-up</strong>
+                                            <p>Ask one final grounded question in the chat tab before handing the notes to your team.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const sessionId = '{{ session_id }}';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            bindTabs();
+            loadResults();
+        });
+
+        function bindTabs() {
+            const buttons = document.querySelectorAll('.tab-button');
+            const panels = document.querySelectorAll('.tab-panel');
+
+            buttons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    buttons.forEach((item) => item.classList.remove('active'));
+                    panels.forEach((panel) => {
+                        panel.classList.remove('active');
+                        panel.classList.add('panel-hidden');
+                    });
+
+                    button.classList.add('active');
+                    const targetPanel = document.getElementById(tabId);
+                    targetPanel.classList.remove('panel-hidden');
+                    requestAnimationFrame(() => {
+                        targetPanel.classList.add('active');
+                    });
+                });
+            });
+        }
+
+        async function loadResults() {
+            try {
+                const response = await fetch(`/api/get-result/${sessionId}`);
+                if (!response.ok) throw new Error('Failed to load results');
+
+                const data = await response.json();
+                displayResults(data);
+            } catch (error) {
+                const loading = document.getElementById('resultsLoading');
+                loading.className = 'error-banner glass-card';
+                loading.innerHTML = `<p>Error loading results: ${escapeHtml(error.message)}</p><a href="/" class="ghost-link">Go back</a>`;
+            }
+        }
+
+        function displayResults(data) {
+            document.getElementById('resultsLoading').classList.add('hidden');
+            document.getElementById('resultsContainer').classList.remove('hidden');
+
+            document.getElementById('resultTitle').textContent = data.title;
+            document.getElementById('resultSummary').innerHTML = formatMultiline(data.summary);
+            document.getElementById('resultActionItems').innerHTML = formatMultiline(data.action_items);
+            document.getElementById('resultDecisions').innerHTML = formatMultiline(data.key_decisions);
+            document.getElementById('resultQuestions').innerHTML = formatMultiline(data.open_questions);
+            document.getElementById('resultTranscript').value = data.transcript;
+
+            document.getElementById('statsTranscriptLength').textContent =
+                `${data.transcript_length.toLocaleString()} characters`;
+            document.getElementById('statsChunksCount').textContent = data.chunks_count;
+            document.getElementById('statsCreatedAt').textContent =
+                new Date(data.created_at).toLocaleString();
+        }
+
+        async function handleQuestion(event) {
+            event.preventDefault();
+            const questionInput = document.getElementById('questionInput');
+            const question = questionInput.value.trim();
+            if (!question) return;
+
+            addChatMessage('user', question);
+            questionInput.value = '';
+
+            try {
+                const response = await fetch('/api/ask-question', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ session_id: sessionId, question })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Failed to get answer');
+                }
+
+                const data = await response.json();
+                addChatMessage('assistant', data.answer);
+            } catch (error) {
+                addChatMessage('assistant', `Error: ${error.message}`);
+            }
+        }
+
+        function addChatMessage(role, content) {
+            const chatHistory = document.getElementById('chatHistory');
+            const row = document.createElement('div');
+            row.className = `chat-row ${role}`;
+            row.innerHTML = `
+                <div class="chat-label">${role === 'user' ? 'You' : 'Assistant'}</div>
+                <div class="chat-text">${escapeHtml(content).replace(/\n/g, '<br>')}</div>
+            `;
+            chatHistory.appendChild(row);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatMultiline(text) {
+            return escapeHtml(text || '').replace(/\n/g, '<br>');
+        }
+    </script>
+</body>
+</html>

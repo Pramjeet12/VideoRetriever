@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - VideoRetriever</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+</head>
+<body class="theme-app">
+    <div class="aurora aurora-one"></div>
+    <div class="aurora aurora-two"></div>
+
+    <div class="app-shell">
+        <header class="site-header">
+            <div class="brand-group">
+                <a href="/" class="brand-lockup">
+                    <span class="brand-emblem">
+                        <span></span><span></span><span></span>
+                    </span>
+                    <span class="brand-text">
+                        <span class="brand-kicker">AI Meeting Workspace</span>
+                        <span class="brand-title">VideoRetriever</span>
+                    </span>
+                </a>
+            </div>
+            <nav class="header-actions">
+                <a href="/" class="ghost-link">Go back</a>
+            </nav>
+        </header>
+
+        <section class="error-shell">
+            <div class="error-panel glass-card">
+                <div class="section-badge">Error state</div>
+                <h1 class="results-title">{{ message }}</h1>
+                <p class="section-copy">Head back to the start page and run a fresh analysis.</p>
+                <a href="/" class="primary-button inline-link">
+                    <span class="button-content">
+                        <span>Return home</span>
+                        <span aria-hidden="true">→</span>
+                    </span>
+                </a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
