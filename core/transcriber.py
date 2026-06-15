@@ -7,7 +7,7 @@ import whisper
 import whisper.audio
 from pydub import AudioSegment
 
-from utils.audio_processor import get_ffmpeg_dir
+from utils.audio_processor import ensure_ffmpeg_tools, get_ffmpeg_dir
 
 # Sarvam's sync STT-translate API rejects audio longer than 30s.
 # We slice each chunk into 25s pieces before sending.
@@ -39,7 +39,8 @@ def patch_whisper_ffmpeg() -> None:
     if _whisper_ffmpeg_patched:
         return
 
-    ffmpeg_exe = os.path.join(ensure_ffmpeg_on_path(), "ffmpeg.exe")
+    ensure_ffmpeg_on_path()
+    ffmpeg_exe, _ = ensure_ffmpeg_tools()
 
     def load_audio_fixed(file: str, sr: int = whisper.audio.SAMPLE_RATE):
         cmd = [
