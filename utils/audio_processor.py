@@ -55,9 +55,12 @@ def get_ffmpeg_dir() -> str:
             )
         )
 
+    ffmpeg_name = "ffmpeg.exe" if os.name == "nt" else "ffmpeg"
+    ffprobe_name = "ffprobe.exe" if os.name == "nt" else "ffprobe"
+
     for candidate in candidates:
-        ffmpeg_exe = os.path.join(candidate, "ffmpeg.exe")
-        ffprobe_exe = os.path.join(candidate, "ffprobe.exe")
+        ffmpeg_exe = os.path.join(candidate, ffmpeg_name)
+        ffprobe_exe = os.path.join(candidate, ffprobe_name)
         if os.path.exists(ffmpeg_exe) and os.path.exists(ffprobe_exe):
             if _tool_healthy(ffmpeg_exe) and _tool_healthy(ffprobe_exe):
                 return candidate
@@ -67,8 +70,10 @@ def get_ffmpeg_dir() -> str:
 
 def ensure_ffmpeg_tools() -> tuple[str, str]:
     ffmpeg_dir = get_ffmpeg_dir()
-    ffmpeg_exe = os.path.join(ffmpeg_dir, "ffmpeg.exe")
-    ffprobe_exe = os.path.join(ffmpeg_dir, "ffprobe.exe")
+    ffmpeg_name = "ffmpeg.exe" if os.name == "nt" else "ffmpeg"
+    ffprobe_name = "ffprobe.exe" if os.name == "nt" else "ffprobe"
+    ffmpeg_exe = os.path.join(ffmpeg_dir, ffmpeg_name)
+    ffprobe_exe = os.path.join(ffmpeg_dir, ffprobe_name)
     return ffmpeg_exe, ffprobe_exe
 
 
