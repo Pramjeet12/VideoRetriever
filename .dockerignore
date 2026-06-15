@@ -1,0 +1,16 @@
+.git
+.gitignore
+.venv
+venv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+.env
+downloads/
+vector_db/
+.cache/
+notebook/
+flask_stdout.log
+flask_stderr.log
